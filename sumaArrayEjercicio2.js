@@ -10,9 +10,8 @@ function sumador(lista){
 
 console.log(sumador(lista))
 
+
 //generar un array del 1 al 200
-
-
 function generarArray(num){ //num=200 hace que el valor por defecto 
                             // en el caso de que no se le introduzca valor sea 200
     
