@@ -13,7 +13,8 @@ console.log(sumador(lista))
 //generar un array del 1 al 200
 
 
-function generarArray(num){
+function generarArray(num){ //num=200 hace que el valor por defecto 
+                            // en el caso de que no se le introduzca valor sea 200
     
     let nuevoArray = [];
     for (let i = 0; i <= num; i++) {
@@ -30,7 +31,7 @@ console.log(sumador(generarArray(200)));
 function crearArrayAleatorio(){
     let arrayAleatorio = []
     for (let i = 0; i < 200; i++) {
-        numeroAleatorio =parseInt(Math.random() * (200 - 1) + 1);
+        numeroAleatorio =parseInt(Math.random() * 200);//con esto va de 0 a 200
         arrayAleatorio.push(numeroAleatorio);
     }
     return arrayAleatorio;
