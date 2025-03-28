@@ -19,6 +19,10 @@ function comprobarPalindromo(cadena) {
         arrayReves.push(arrayDerecho[i]);
     }
     
+    //muestro los arrays
+    console.log(arrayDerecho);
+    console.log(arrayReves);
+
     //recorre el array hasta que encuentre un valor distinto, si lo encuentra da false dando a entender que no es palindromo
     for (let j = 0; j < longitud; j++) {
         if(arrayDerecho[j] !== arrayReves[j])
