@@ -9,6 +9,7 @@ function intercalarArray(letras,numeros) {
     let arrayIntercalado = [];
     let longitudMaxima = 0;
 
+    //para ver cual de los dos arrays es mas largo
     if(letras.length > numeros.length){
         longitudMaxima = letras.length
     }else{
