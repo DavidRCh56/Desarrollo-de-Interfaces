@@ -33,3 +33,17 @@ function comprobarPalindromo(cadena) {
 
 console.log(comprobarPalindromo(palindromo));
 console.log(comprobarPalindromo(noPalindromo));
+
+/*
+OTRA SOLUCION
+
+
+function esPalindromo(cadena){
+    const tam = cadena.length
+    for(let i = 0; i<parseInt(tam / 2); i++){
+        if(cadena[i] !== cadena[tam-i-1])
+            return false;
+        }
+    return true;
+}
+*/

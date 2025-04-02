@@ -48,3 +48,4 @@ function rotarArray(array, numero){
 }
 
 console.log(rotarArray(array, 2));
+//se podria hacer mas corto usando %
