@@ -1,7 +1,7 @@
 //pdf1 javaScript pg101: 1-15
 //6. Crea una función que cuente las frases, palabras y letras presentes en un texto.
 
-const texto = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea ullam ut maiores pariatur nobis adipisci officiis tempore. Perferendis nam sint vero, voluptatem nostrum nesciunt aspernatur ad deserunt velit voluptatibus libero.";
+const texto = "hola, si. soy david.";
 
 function contarTexto(texto) {
     let contadorFrases = 0;
