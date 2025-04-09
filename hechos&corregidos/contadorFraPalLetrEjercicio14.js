@@ -3,7 +3,7 @@
 
 const texto = "hola, si. soy david.";
 
-function contarTexto(texto) {
+/*function contarTexto(texto) {
     let contadorFrases = 0;
     let contadorPalabras = 0;
     let contadorLetras = 0;
@@ -38,6 +38,42 @@ function contarTexto(texto) {
     console.log("Frases: " + contadorFrases);
     console.log("Palabras: " + contadorPalabras);
     console.log("Letras: " + contadorLetras);
+}*/
+
+//contarTexto(texto);
+
+//otra solucion:
+
+function contarLetras(texto) {
+    let n = 0;
+    const textoMin = texto.toLowerCase();
+    for (const letra of textoMin) {
+        let codigo = letra.charCodeAt();
+        if(codigo >= 97 && codigo <= 122 || codigo >= 128 && codigo <= 165){
+            n++
+        }
+    }
+    console.log("Letras: ")
+    return n;
 }
 
-contarTexto(texto);
+function contarFrases(texto) {
+    let n = 0;
+    for (const letra of texto) {
+        if (letra === ".") {
+            n++;
+        }
+    }
+    console.log("Frases: ")
+    return n;
+}
+
+function contarPalabras(texto){
+    let n = 0;
+    //se podria hacer como en el ejercicio 11
+    return n;
+}
+
+console.log(contarLetras(texto));
+console.log(contarFrases(texto));
+console.log(contarPalabras(texto));
