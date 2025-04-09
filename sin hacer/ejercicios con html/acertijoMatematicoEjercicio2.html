@@ -1,0 +1,52 @@
+<!-- p109 -->
+<!-- 
+5. Crea una página que genere un acertijo matemático simple formado por sumas y restas. El usua‑
+rio inserta la respuesta y el script le indica si ha acertado o no.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="acertijo"></div>
+        <input type="number" id="respuesta">
+        <button onclick="verificarRespuesta(respuesta)">Enviar</button>
+        <div id="resultado"></div>
+    </div>
+    <script>
+        const divAcertijo = document.getElementById("acertijo");
+        const inputRespuesta = 
+        const btnCorregir = 
+        const divResultado = 
+        let solucion = 0;
+
+        function generarAcertijo(){
+            const n1 = Math.round(Math.random() * 20);
+            const n2 = Math.round(Math.random() * 20);
+            const simbolo = Math.round(Math.random() * 1);
+            let operacion;
+            let resultado;
+
+            if (simbolo === 1) {
+                operacion = "+";
+                resultado = n1 + n2;
+            } else {
+                operacion = "-";
+                resultado = n1 - n2;
+            }
+            divAcertijo.innerHTML = `${n1} + ${operacion} + ${n2}`;
+        }
+
+        document.getElementById("acertijo").textContent = `¿Cuánto es: ${operacion}?`;
+
+        function verificarRespuesta(respuesta){
+
+        }
+    </script>
+</body>
+</html>

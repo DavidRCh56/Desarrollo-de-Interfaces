@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="bloque">
+        <h1>Titulo1 </h1>
+        <p>Subtitulo</p>
+        <h1>Titulo2</h1>
+    </div>
+    <p class="p1">Parrafo 1</p>
+    <p class="p1">Parrafo <strong>2</strong></p>
+    <script>
+        const bloque = document.getElementById("bloque");
+        const p1 = document.getElementsByClassName("p1");
+        const p2 = document.getElementsByTagName("strong");
+        const p3 = document.querySelector("#bloque h1");
+        const p4 = document.querySelectorAll("#bloque h1");
+        console.log(bloque,p1);
+    </script>
+</body>
+</html>
