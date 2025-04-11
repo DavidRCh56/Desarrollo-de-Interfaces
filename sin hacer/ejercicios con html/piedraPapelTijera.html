@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Elije que vas a tirar:</p>
+    <button id="piedra" onclick="jugar('piedra')">piedra</button>
+    <button id="papel" onclick="jugar('papel')">papel</button>
+    <button id="tijera" onclick="jugar('tijera')">tijera</button>
+    <p id="resultado"></p>
+    <script>
+        /*function jugar(eleccion){
+            let resultado = document.getElementById("resultado");
+            let ordenador = Math.random();
+            let eleccionOrdenador = "";
+
+            if(ordenador <= 0.33)
+                eleccionOrdenador = "piedra";
+            if(ordenador <= 0.66 && ordenador >= 0.33)
+                eleccionOrdenador = "papel";
+            if(ordenador <= 0.99 && ordenador >= 0.66)
+                eleccionOrdenador = "tijera";
+            if(eleccionOrdenador === eleccion)
+                resultado.innerHTML("EMPATE");
+            if(eleccion === "piedra" && eleccionOrdenador === "papel"){
+                resultado.innerHTML("HAS PERDIDO");
+            } else {
+                resultado.innerHTML("HAS GANADO");
+            }
+            if(eleccion === "papel" && eleccionOrdenador === "tijera"){
+                resultado.innerHTML("HAS PERDIDO");
+            } else {
+                resultado.innerHTML("HAS GANADO");
+            }
+            if(eleccion === "tijera" && eleccionOrdenador === "piedra"){
+                resultado.innerHTML("HAS PERDIDO");
+            } else {
+                resultado.innerHTML("HAS GANADO");
+            }
+        }*/
+        const divResultado = document.getElementById("resultado")
+        const EMPATE = 0;
+        const ganaJugador = 1;
+        const ganaOrdenador = 2;
+        divResultado.innerHTML = ``;
+        function jugar(jugadaUsuario){
+            let resultado = EMPATE;
+            const jugadas = ["piedra","papel","tijera"];
+            const jugadaOrdenador = jugadas[Math.round(Math.random * 2)];
+            console.log(jugadaOrdenador,jugadaUsuario);
+            if(jugadaUsuario === jugadaOrdenador){
+                 resultado = EMPATE;
+                 divResultado.innerHTML = "EMPATE"
+            }else {
+                if(jugadaUsuario === "piedra" && jugadaOrdenador === "tijera" ||
+                jugadaUsuario === "papel" && jugadaOrdenador === "piedra" ||
+                jugadaUsuario === "tijera" && jugadaOrdenador === "papel"
+                ){
+                    resultado = ganaJugador;
+                    divResultado.innerHTML = "HAS GANADO"
+                }else{
+                    resultado = ganaOrdenador;
+                    divResultado.innerHTML = "HAS PERDIDO"
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

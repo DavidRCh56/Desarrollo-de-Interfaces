@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    Primera tabla: <input type="number" id="numero1" value="1">
+    Primera tabla: <input type="number" id="numero2" value="10">
+    <button id="generar" onclick="generar()">generar</button>
+    <div id="tablas"></div>
+
+    <script>
+        let n1 = document.getElementById("numero1");
+        let n2 = document.getElementById("numero2");
+        /*function generarTablas(){
+            if(n1>n2){
+                tablas.innerHTML("pon el mayor de los numeros abajo")
+            } else {
+                for(let n1; n1 < n2; n1++){
+                    document.write("Tabla de multiplicar del " + n1 + "<br>");
+
+                    for(let j = 0; j <= 10; j++){
+                        document.write(n1 + "x" + j + "= " + j * n1 + "<br>");
+                    }
+                }
+            }
+        }*/
+        function generarTabla(numero){
+            const tablas = document.getElementById("tablas");
+            for(let i=1; i <= 10; i++){
+                tablas.innerHTML += `<p> ${numero} * ${i} = ${numero * i}</p>`;
+            }
+        }
+
+        function generar(){
+            tablas.innerHTML = "";
+            const primera = parseInt(document.getElementById("numero1"));
+            const segunda = parseInt(document.getElementById("numero2"));
+            for(let i=primera; i <= segunda; i++){
+                generarTabla(i);
+            }
+        }
+    </script>
+
+</body>
+</html>
