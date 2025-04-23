@@ -1,0 +1,54 @@
+<!-- Implementa los siguientes apartados.
+a. Crea un objeto Javascript con las propiedades dni, nombre, apellidos y edad con valores
+inventados. Serializa el objeto a json y después deserializalo.
+b. Recorre el objeto con un bucle imprimiendo sus propiedades y valores.
+c. Crea una función que desestructure la propiedad nombre y dni y los imprima en consola.
+d. Crea una función arrow con el parámetro tam que genere un array de números aleatorios
+de 0 a 100 de tamaño tam. Llama a lafunción y desestructura el primer y segundo elemento
+y el resto en constantes -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // a. Creación y serialización del objeto
+        const persona = {
+            dni: "12345678A",
+            nombre: "Juan",
+            apellidos: "Pérez",
+            edad: 30
+        };
+        const personaJSON = JSON.stringify(persona);
+        console.log("Objeto serializado:", personaJSON);
+        const personaDeserializada = JSON.parse(personaJSON);
+        console.log("Objeto deserializado:", personaDeserializada);
+
+        // b. Recorrido del objeto
+        for (let prop in personaDeserializada) {
+            console.log(`${prop}: ${personaDeserializada[prop]}`);
+        }
+
+        // c. Desestructuración de propiedades
+        const printNombreYDNI = ({ nombre, dni }) => {
+            console.log(`Nombre: ${nombre}, DNI: ${dni}`);
+        };
+        printNombreYDNI(persona);
+
+        // d. Función Arrow para generar array de números aleatorios
+        const generarArrayAleatorio = (tam) => {
+            const array = Array.from({ length: tam }, () => Math.floor(Math.random() * 101));
+            return array;
+        };
+        
+        const [primero, segundo, ...resto] = generarArrayAleatorio(10);
+        console.log("Primero:", primero);
+        console.log("Segundo:", segundo);
+        console.log("Resto:", resto);
+    </script>
+</body>
+</html>

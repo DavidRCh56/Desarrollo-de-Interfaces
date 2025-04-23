@@ -1,0 +1,49 @@
+<!-- Implementa una galería de imágenes:
+a. Genera con un bucle un array de 20 urls con el siguiente patrón: const image‑
+nes = [“https://randomfox.ca/images/1.jpg”, “https://randomfox.ca/images/2.jpg”,
+“https://randomfox.ca/images/3.jpg”, ]
+b. El layout está formado por 4 elementos en el siguiente orden: Un botón Anterior, 2 imáge‑
+nes y un botón Siguiente.
+c. En un primer momento se mostrará la imagen de la posición 0 y 1 del array. Al pulsar el
+botón siguiente se mostrarán las imágenes 1 y 2 y así sucesivamente.
+d. De igual forma implementa el comportamiento del botón Anterior.
+e. Controla el botón anterior y siguiente en las posiciones extremas. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="galeria">
+        <button onclick="mostrarAnterior()">Anterior</button>
+        <img id="imagen1" src="" alt="Imagen 1">
+        <img id="imagen2" src="" alt="Imagen 2">
+        <button onclick="mostrarSiguiente()">Siguiente</button>
+    </div>
+
+    <script>
+        const imagenes = Array.from({ length: 20 }, (_, i) => `https://randomfox.ca/images/${i + 1}.jpg`);
+        let indice = 0;
+        function mostrarImagenes() {
+            document.getElementById("imagen1").src = imagenes[indice];
+            document.getElementById("imagen2").src = imagenes[indice + 1];
+        }
+        function mostrarSiguiente() {
+            if (indice < imagenes.length - 2) {
+                indice++;
+                mostrarImagenes();
+        }
+        }
+        function mostrarAnterior() {
+            if (indice > 0) {
+                indice--;
+                mostrarImagenes();
+            }
+        }
+        mostrarImagenes();
+    </script>
+</body>
+</html>

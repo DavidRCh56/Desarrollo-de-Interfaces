@@ -1,0 +1,30 @@
+<!-- Crea una página web que genere contraseñas aleatorias con una mezcla de letras, números
+y símbolos. La página tiene un campo de entrada numérico en el que el usuario especifica el
+tamaño de la contraseña a generar. La contraseña se mostrará al pulsar un botón. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Generar contraseña</h1>
+    <input type="number" id="longitud" placeholder="Tamaño de la contraseña">
+    <button onclick="generarContrasenna()">Generar</button>
+    <div id="contrasenna"></div>
+    
+    <script>
+        function generarContrasenna() {
+            const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+            let longitud = parseInt(document.getElementById("longitud").value);
+            let contrasenna = "";
+            for (let i = 0; i < longitud; i++) {
+                contrasenna += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            document.getElementById("contrasenna").innerText = contrasenna;
+        }
+    </script>
+</body>
+</html>

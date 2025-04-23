@@ -1,0 +1,65 @@
+<!-- Crea un editor y renderizador de markdown. En la parte superior tenemos un textarea donde el
+usuario escribe el texto en markdown simplificado. Debajo se encuentra el botón “Renderizar”.
+Al pulsarlo se debe generar, en la parte inferior, el DOM correspondiente con el formato adecua‑
+do. Para ello, separa el texto que ha insertado el usuario en líneas e implementa el siguiente
+formato:
+a. Si la línea comienza por # genera un H1
+b. Si la línea comienza por ## genera un H2
+c. Si la línea comienza por ### genera un H3
+d. Si comienza y termina en ** genera una etiqueta strong
+e. Si comienza por * y termina por * genera una etiqueta i (itálica)
+f. En caso contrario genera un párrafo. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Markdown</h1>
+    <textarea id="markdown-input" placeholder="Escribe tu markdown"></textarea>
+    <br>
+    <button id="render-button">Renderizar</button>
+    <div id="output"></div>
+
+    <script>
+        const markdownInput = document.getElementById("markdown-input");
+        const renderButton = document.getElementById("render-button");
+        const output = document.getElementById("output");
+
+        function renderMarkdown() {
+            output.innerHTML = "";
+            const lines = markdownInput.value.split("\n");
+            lines.forEach(line => {
+                let element;
+
+                if (line.startsWith("### ")) {
+                    element = document.createElement("h3");
+                    element.textContent = line.slice(4);
+                } else if (line.startsWith("## ")) {
+                    element = document.createElement("h2");
+                    element.textContent = line.slice(3);
+                } else if (line.startsWith("# ")) {
+                    element = document.createElement("h1");
+                    element.textContent = line.slice(2);
+                } else if (line.startsWith("**") && line.endsWith("**")) {
+                    element = document.createElement("strong");
+                    element.textContent = line.slice(2, -2);
+                } else if (line.startsWith("*") && line.endsWith("*")) {
+                    element = document.createElement("i");
+                    element.textContent = line.slice(1, -1);
+                } else {
+                    element = document.createElement("p");
+                    element.textContent = line;
+                }
+
+                output.appendChild(element);
+            });
+        }
+
+        renderButton.addEventListener("click", renderMarkdown);
+    </script>
+</body>
+</html>

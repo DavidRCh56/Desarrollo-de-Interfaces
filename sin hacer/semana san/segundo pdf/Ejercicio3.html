@@ -1,0 +1,56 @@
+<!-- Crea una página web para escribir la carta a los reyes magos.
+a. El usuario puede escribir el regalo que desea pedir en una caja de texto. Cuando pulsa el
+botón “Pedir” se añade a la lista.
+b. Crea un botón para borrar la lista completa.
+c. Muestra un mensaje que indique el total de regalos pedidos en la lista.
+d. Cada elemento de la lista tiene un botón o enlace que al pulsarlo lo eliminará -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mi Carta a los Reyes Magos</h1>
+    <input type="text" id="regalo" placeholder="Escribe tu regalo...">
+    <button onclick="agregarRegalo()">Pedir</button>
+    <button onclick="borrarLista()">Borrar Lista</button>
+    <ul id="lista-regalos"></ul>
+    <p id="total-regalos">Total de regalos: 0</p>
+    
+    <script>
+        const listaRegalos = document.getElementById("lista-regalos");
+        const totalRegalos = document.getElementById("total-regalos");
+        let regalos = [];
+        function agregarRegalo() {
+            const regalo = document.getElementById("regalo").value;
+            if (regalo) {
+                regalos.push(regalo);
+                document.getElementById("regalo").value = "";
+                actualizarLista();
+            }
+        }
+        function borrarLista() {
+            regalos = [];
+            actualizarLista();
+        }
+        function eliminarRegalo(index) {
+            regalos.splice(index, 1);
+            actualizarLista();
+        }
+        function actualizarLista() {
+            listaRegalos.innerHTML = "";
+            regalos.forEach((regalo, index) => {
+                const li = document.createElement("li");
+                li.className = "regalo";
+                li.innerHTML = `${regalo} <button onclick="eliminarRegalo(${index})">Eliminar
+                </button>`;
+                listaRegalos.appendChild(li);
+            });
+            totalRegalos.innerText = `Total de regalos: ${regalos.length}`;
+        }
+    </script>
+</body>
+</html>
