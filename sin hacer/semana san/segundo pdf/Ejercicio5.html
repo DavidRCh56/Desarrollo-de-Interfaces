@@ -6,8 +6,8 @@ b. Para cada post consulta los datos del usuario que lo ha escrito. Debajo de ca
 mostrará el nombre y correo del usuario correspondiente.
 c. Usa CSS para dar formato.
 d. Añade una caja de texto a modo de buscador en la parte superior. Cuando está vacía se
-muestran todos los posts. Si el usuario escribe la palabra “aut” se filtrará el listado mos‑
-trando aquellos posts que contienen dicha palabra en el campo título. -->
+muestran todos los posts. Si el usuario escribe la palabra “aut” se filtrará el listado mostrando 
+aquellos posts que contienen dicha palabra en el campo título. -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,37 +17,13 @@ trando aquellos posts que contienen dicha palabra en el campo título. -->
     <title>Document</title>
 </head>
 <body>
-    <input type="text" id="search-box" placeholder="Buscar posts...">
-    <div id="posts-container"></div>
+    <div id="divPosts"></div>
 
     <script>
-        const postsContainer = document.getElementById("posts-container");
-        const searchBox = document.getElementById("search-box");
-        const fetchPosts = async () => {
-            try {
-                const postsResponse = await fetch("https://jsonplaceholder.typicode.com/posts");
-                const posts = await postsResponse.json();
-                const filteredPosts = posts.filter(post => post.title.includes(searchBox.value));
-                postsContainer.innerHTML = "";
-                for (const post of filteredPosts) {
-                    const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`);
-                    const user = await userResponse.json();
-                    const postElement = document.createElement("div");
-                    postElement.className = "post";
-                    postElement.innerHTML = `
-                    <h2>${post.title}</h2>
-                    <p>${post.body}</p>
-                    <div class="user-info">Escrito por: ${user.name} (${user.email})</div
-                    >
-                    `;
-                    postsContainer.appendChild(postElement);
-                }
-            } catch (error) {
-            console.error("Error fetching posts:", error);
-            }
-        };
-        searchBox.addEventListener("input", fetchPosts);
-        fetchPosts();
+        const divPosts = document.getElementById("divPosts");
+
+        const postsResponse = await fetch("https://jsonplaceholder.typicode.com/posts");
+            
     </script>
 </body>
 </html>
