@@ -1,0 +1,80 @@
+<!-- pg 117 2ªpdf ejercicio 6
+ Crea una aplicación simple SPA (Single Page Application) que muestre al usuario varias páginas
+al hacer click en distintos enlaces. Cada “página” debe ser cargada dinámicamente sin recargar
+la página completa.
+a. Crea un menú de enlaces que siempre será visible: Home, DAM, Empresas. El atributo src
+tiene el valor =”#”. Crea un manejador de eventos que cambie la página que corresponda.
+b. Al pinchar en el enlace Home se cargará en el DOM el texto h1 “IES Virgen del Carmen”.
+c. Al pinchar en el enlace DAM, se cargará una lista numerada con los módulos de 2º DAM.
+d. Al pinchar en Empresas, se cargará una lista con varios nombres de empresas. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="menu">
+        <a href="#" id="home">HOME</a>
+        <a href="#" id="dam">DAM</a>
+        <a href="#" id="empresas">EMPRESAS</a>
+        
+    </div>
+    <div id="contenido"></div>
+    
+    <script>
+        const divRespuesta = document.getElementById("contenido");
+        const linkHome = document.getElementById("home");
+        const linkDam = document.getElementById("dam");
+        const linkEmpresas = document.getElementById("empresas");
+
+        linkHome.addEventListener("click", function(event) {
+            cargarHome();
+        });
+
+        linkDam.addEventListener("click", function(event) {
+            cargarDam();
+        });
+
+        linkEmpresas.addEventListener("click", function(event) {
+            cargarEmpresas();
+        });
+
+        function cargarHome(){
+            divRespuesta.innerHTML = "<h1>IES Virgen del Carmen</h1>";
+        }
+
+        function cargarDam(){
+            divRespuesta.innerHTML = `
+                <h2>Modulos DAM</h2>
+                <ol>
+                    <li>Desarrollo de Interfaces</li>
+                    <li>Acceso a Datos</li>
+                    <li>Multimedia</li>
+                    <li>PSP</li>
+                    <li>Empresariales</li>
+                    <li>OpenERP</li>
+                    <li>sdalfk</li>
+                </ol>
+            `;
+        }
+
+        function cargarEmpresas(){
+            divRespuesta.innerHTML = `
+                <h2>Nombres Empresas</h2>
+                <ol>
+                    <li>Tesla</li>
+                    <li>Amazon</li>
+                    <li>Apple</li>
+                    <li>Microsoft</li>
+                    <li>Oracle</li>
+                    <li>IBM</li>
+                    <li>Intel</li>
+                </ol>
+            `;
+        }
+    </script>
+</body>
+</html>
