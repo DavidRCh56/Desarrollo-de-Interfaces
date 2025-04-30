@@ -26,7 +26,7 @@ portada y año de publicación. -->
 <body>
     <div id="divBuscar">
         <input type="text" id="inputBuscar">
-        <button id="btnBuscar">Buscar</button>
+        <button id="btnBuscar" >Buscar</button>
     </div>
 
     <div id="divResultados"></div>
@@ -36,66 +36,68 @@ portada y año de publicación. -->
         const btnBuscar = document.getElementById("btnBuscar");
         const divResultados = document.getElementById("divResultados");
 
-        // Función para realizar la búsqueda de libros
-async function searchBooks() {
-    // Limpiar resultados previos
-    resultsDiv.innerHTML = '';
-    // Obtener el valor de la caja de texto
-    const query = searchBox.value.trim();
-    if (query === '') {
-    resultsDiv.innerHTML = '<p>Por favor, ingresa un término de búsqueda.</p>';
-    return;
-    }
-    // Realizar la solicitud a la API de openlibrary.org
-    const response = await fetch(`https://openlibrary.org/search.json?q=${
-    encodeURIComponent(query)}`);
-    const data = await response.json();
-    // Verificar si se encontraron libros
-    const numFound = data.numFound;
-    if (numFound === 0) {
-    resultsDiv.innerHTML = '<p>No se ha encontrado ningún libro</p>';
-    return;
-    }
-    // Mostrar el número de libros encontrados
-    const resultsHeader = document.createElement('div');
-    resultsHeader.innerHTML = `<h2>${numFound} libros encontrados</h2>`;
-    resultsDiv.appendChild(resultsHeader);
-    // Crear un bloque div para cada libro encontrado
-    data.docs.forEach(book => {
-    const bookDiv = document.createElement('div');
-    bookDiv.className = 'book';
-    // Crear imagen de la portada (si tiene ISBN)
-    const coverImg = document.createElement('img');if (book.isbn && book.isbn.length > 0) {
-        coverImg.src = `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-S.
-        jpg`;
-        } else {
-        coverImg.src = 'https://via.placeholder.com/50x75?text=No+Cover';
+        async function buscarLibros(){
+            const buscado = inputBuscar.value.trim();
+            
+            if (buscado === ""){
+                divResultados.innerHTML = "<p>tienes que ingresar algo</p>";
+                return;
+            }
+
+            const respuesta = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(buscado)}`);
+            const datos = await respuesta.json();
+
+            let encontrados = datos.numFound;
+            if (encontrados === 0) {
+                divResultados.innerHTML = "<p>No se ha encontrado ningún libro</p>";
+                return;
+            }
+            
+            const cantidadLibros = document.createElement("div");
+            cantidadLibros.innerHTML = `<h2>${encontrados} libros encontrados</h2>`;
+            divResultados.appendChild(cantidadLibros);
+
+            datos.docs.forEach(libro => {
+                const divLibro = document.createElement('div');
+                divLibro.className = 'libro';
+
+                // Crear imagen de la portada (si tiene ISBN)
+                const imgPortada = document.createElement('img');
+                if (libro.isbn && libro.isbn.length > 0) {
+                    imgPortada.src = `https://covers.openlibrary.org/b/isbn/${libro.isbn[0]}-S.jpg`;
+                } else {
+                    imgPortada.src = 'https://via.placeholder.com/50x75?text=Sin+Portada';
+                }
+
+                // Detalles del libro
+                const detallesLibro = document.createElement('div');
+                detallesLibro.className = 'detalles-libro';
+
+                const titulo = document.createElement('p');
+                titulo.className = 'titulo-libro';
+                titulo.textContent = libro.title || 'Sin título';
+
+                const subtitulo = document.createElement('p');
+                subtitulo.className = 'subtitulo-libro';
+                subtitulo.textContent = libro.subtitle || '';
+
+                const anio = document.createElement('p');
+                anio.className = 'anio-libro';
+                anio.textContent = libro.first_publish_year ? `Año de publicación: ${libro.first_publish_year}` : 'Año de publicación desconocido';
+
+                // Añadir los detalles al contenedor del libro
+                detallesLibro.appendChild(titulo);
+                detallesLibro.appendChild(subtitulo);
+                detallesLibro.appendChild(anio);
+                divLibro.appendChild(imgPortada);
+                divLibro.appendChild(detallesLibro);
+
+                // Añadir el contenedor del libro al div de resultados
+                divResultados.appendChild(divLibro);
+            });
+            
         }
-        // Detalles del libro
-        const bookDetails = document.createElement('div');
-        bookDetails.className = 'book-details';
-        const title = document.createElement('p');
-        title.className = 'book-title';
-        title.textContent = book.title || 'Sin título';
-        const subtitle = document.createElement('p');
-        subtitle.className = 'book-subtitle';
-        subtitle.textContent = book.subtitle || '';
-        const year = document.createElement('p');
-        year.className = 'book-year';
-        year.textContent = book.first_publish_year ? `Año de publicación: ${book.
-        first_publish_year}` : 'Año de publicación desconocido';
-        // Añadir los detalles al contenedor del libro
-        bookDetails.appendChild(title);
-        bookDetails.appendChild(subtitle);
-        bookDetails.appendChild(year);
-        bookDiv.appendChild(coverImg);
-        bookDiv.appendChild(bookDetails);
-        // Añadir el contenedor del libro al div de resultados
-        resultsDiv.appendChild(bookDiv);
-        });
-        }
-        // Añadir evento de click al botón de búsqueda
-        searchButton.addEventListener('click', searchBooks);
+        btnBuscar.addEventListener("click", buscarLibros);
     </script>
 </body>
 </html>
